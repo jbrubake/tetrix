@@ -1,3 +1,5 @@
+				TETRIX
+
         This is a Unix SysV implementation of a game that appeared on
 comp.binaries.amiga a while ago. The author, Quentin Neill,
 saw it on an amiga here at work, and ported it to curses 
@@ -39,3 +41,11 @@ with -DEGA to get better colors (this uses the EGA quirk that yellow is
 to set the value of INIT_PAUSE.
 
 	Have fun!					Eric S. Raymond
+
+November 1994:  This code has been cleaned up for use with Linux ncurses.
+You don't have to specify -DCOLOR any more.  Given the growing ubiquity
+of curses, this game is now semi-obsolescent and I don't expect to have
+to hack it again.  Thus the envoi
+
+	Good bye!					Eric S. Raymond
+
