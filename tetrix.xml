@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id='tetrix.6'>
+<refmeta>
+<refentrytitle>tetrix</refentrytitle>
+<manvolnum>6</manvolnum>
+<refmiscinfo class='date'>Linux</refmiscinfo>
+</refmeta>
+<refnamediv id='name'>
+<refname>tetrix</refname>
+<refpurpose>Tetris-like game with screen graphics</refpurpose>
+</refnamediv>
+<refsynopsisdiv id='synopsis'>
+
+<cmdsynopsis>
+  <!--  blue  [ pause ]  -->
+  <command>blue</command>  <arg choice='opt'><replaceable>pause</replaceable></arg>
+</cmdsynopsis>
+
+</refsynopsisdiv>
+
+<refsect1 id='description'><title>DESCRIPTION</title>
+<para>A clone of the Tetris game. Documentation for the commands is
+on-screen.  The optional argument is an initial delay time between moves; on
+2002-era personal computers it needs to be set to about 100,000.
+</para>
+
+</refsect1>
+
+<refsect1 id='files'><title>FILES</title>
+<para><filename>/usr/tmp/.TetScores</filename>
+Scores file.</para>
+</refsect1>
+
+<refsect1 id='authors'><title>AUTHORS</title>
+<para>Originally written by Quentin Neill. Visual user interface and
+color support by Eric S. Raymond
+<email>esr@thyrsus.com</email>. The ncurses version was written
+in November 1994. See <emphasis
+remap='I'>http://www.tuxedo.org/~esr/ttetrix/</emphasis>.</para>
+</refsect1>
+</refentry>
+
