@@ -14,7 +14,6 @@
 <refsynopsisdiv id='synopsis'>
 
 <cmdsynopsis>
-  <!--  tetrix  [ pause ]  -->
   <command>tetrix</command>  <arg choice='opt'><replaceable>pause</replaceable></arg>
 </cmdsynopsis>
 
@@ -38,7 +37,7 @@ Scores file.</para>
 color support by Eric S. Raymond
 <email>esr@thyrsus.com</email>. The ncurses version was written
 in November 1994. See <emphasis
-remap='I'>http://www.tuxedo.org/~esr/ttetrix/</emphasis>.</para>
+remap='I'>http://www.catb.org/~esr/tetrix/</emphasis>.</para>
 </refsect1>
 </refentry>
 
