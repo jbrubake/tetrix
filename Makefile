@@ -6,15 +6,12 @@
 #  - this will create a high score file in /usr/tmp, so doing it again
 #    later on will erase high scores for the machine.
 
-# Don't forget to change the spec file when you bump the version number.
-VERS=2.1
+VERS=$(shell sed <tetrix.spec -n -e '/Version: \(.*\)/s//\1/p')
 
 CFLAGS=-O -DIBM
 LFLAGS = -s
 OBJS= MoveR.o MoveL.o DrawP.o AdvanceP.o Rotate.o Colors.o tet.o
 INCS= tet.h
-
-SOURCES = 
 
 tetrix: $(OBJS) $(INCS)
 	cc $(LFLAGS) $(OBJS) -lncurses -o tetrix
@@ -40,7 +37,7 @@ uninstall:
 clean:
 	rm -f tetrix tetrix.6 tetrix-*.rpm tetrix-*.tar.gz *~
 
-SOURCES = READ.ME COPYING tetrix.xml Makefile tet.h $(OBJS:.o=.c) tetrix.spec
+SOURCES = README COPYING tetrix.xml Makefile tet.h $(OBJS:.o=.c) tetrix.spec
 
 tetrix-$(VERS).tar.gz: $(SOURCES) tetrix.6
 	@ls $(SOURCES) tetrix.6 | sed s:^:tetrix-$(VERS)/: >MANIFEST
@@ -49,13 +46,3 @@ tetrix-$(VERS).tar.gz: $(SOURCES) tetrix.6
 	@(cd ..; rm tetrix-$(VERS))
 
 dist: tetrix-$(VERS).tar.gz
-
-RPMROOT=/usr/src/redhat
-RPM = rpm
-RPMFLAGS = -ba
-rpm: dist
-	cp tetrix-$(VERS).tar.gz $(RPMROOT)/SOURCES;
-	cp tetrix.spec $(RPMROOT)/SPECS
-	cd $(RPMROOT)/SPECS; $(RPM) $(RPMFLAGS) tetrix.spec	
-	cp $(RPMROOT)/RPMS/`arch|sed 's/i[4-9]86/i386/'`/tetrix-$(VERS)*.rpm .
-	cp $(RPMROOT)/SRPMS/tetrix-$(VERS)*.src.rpm .
