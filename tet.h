@@ -40,14 +40,14 @@
 
 extern char Board[BOARD_WIDE][BOARD_HIGH];
 
-#ifndef COLOR
+#ifndef A_COLOR
 /* Macros */
 /* offset the character on screen by MINX and MINY */
 #define PUTCH(x,y,z) {  mvaddch(y,x,z); if (INBOARD(x, y)) Board[x-MINX][y-MINY]=z; }
 #else
 extern void PUTCH();
 extern void init_colors();
-#endif /* COLOR */
+#endif /* A_COLOR */
 
 #ifdef BIGCPP
 /* test whether a square is empty and legal */

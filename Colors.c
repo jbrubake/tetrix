@@ -3,7 +3,7 @@
 #include <curses.h>
 #include "tet.h"
 
-#ifdef COLOR
+#ifdef A_COLOR
 /* color pair indexes for pieces */
 #define BLACK	0
 #define GREEN	1
@@ -81,4 +81,4 @@ int	x, y, z;
     attrset(0);
 }
 
-#endif /* COLOR */
+#endif /* A_COLOR */

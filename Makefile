@@ -4,13 +4,13 @@
 #  - this will create a high score file in /usr/tmp, so doing it again
 #    later on will erase high scores for the machine.
 
-CFLAGS=-O -DCOLOR -DTERMINFO -DEGA
-LFLAGS = -s
+CFLAGS=-g -DEGA
+LFLAGS = # -s
 OBJS= MoveR.o MoveL.o DrawP.o AdvanceP.o Rotate.o Colors.o tet.o
 INCS= tet.h
 
 tetrix: $(OBJS) $(INCS)
-	cc $(LFLAGS) $(OBJS) -o tetrix -lcurses
+	cc $(LFLAGS) $(OBJS) -ldcurses -o tetrix
 
 MoveR.o: MoveR.c tet.h
 MoveL.o: MoveL.c tet.h

@@ -40,9 +40,6 @@ struct ScoreStruct {
 } High[HIGHCOUNT];
 int ThisScore,HighsChanged;
 		
-char *ttyname();
-char combuf[2];
-struct termio origtty, tty;
 char Board[BOARD_WIDE][BOARD_HIGH];
 char Temp[BOARD_WIDE][BOARD_HIGH];	/* temp storage for TestRows */
 
@@ -99,27 +96,17 @@ Init()
 	time(&timein);		/* get start time */
 	srand48(timein);	/* start rand randomly */
 
-	ttnam = ttyname (0); 
-	close (0); 
-	open (ttnam, O_NDELAY);
-	/*
-	 * setup raw mode, no echo
-	 */
-	ioctl (0, TCGETA, &origtty);
-	ioctl (0, TCGETA, &tty);
-	tty.c_iflag &= 077;
-	tty.c_oflag &= 077700;
-	tty.c_lflag = 0201;
-	tty.c_cc[4] =  1;
-	ioctl (1, TCSETAW, &tty);
 	signal(SIGINT, SIG_IGN);
 	
 	Beep=0;
 	HighsChanged = 0;
-	ScoreIt();
 	initscr();
+	nodelay(stdscr, TRUE);
+	noecho();
+	cbreak();
+	ScoreIt();
 
-#ifdef TERMINFO
+#ifdef ACS_VLINE
     /* good, we can use the defined forms-drawing characters */
     VERT = ACS_VLINE;
     HORIZ = ACS_HLINE;
@@ -127,11 +114,11 @@ Init()
     URC = ACS_URCORNER;
     LLC = ACS_LLCORNER;
     LRC = ACS_LRCORNER;
-#endif /* TERMINFO */
+#endif /* ACS_VLINE */
 
-#ifdef COLOR
+#ifdef A_COLOR
         init_colors();
-#endif /* COLOR */
+#endif /* A_COLOR */
 	/* initialize board to spaces */
 	for (x=0; x<BOARD_WIDE; x++) 
 		for (y=0; y<BOARD_HIGH; y++) 
@@ -177,9 +164,6 @@ int	t, l, d, w;
 {
     register int x, y;
 
-#ifdef TERMINFO
-    attron(A_ALTCHARSET);
-#endif
     for (y = t + 1; y < t + d; y++)
     {
 	mvaddch(y, l, VERT);
@@ -194,9 +178,6 @@ int	t, l, d, w;
     mvaddch(t + d,     l,     LLC);
     mvaddch(t,         l + w, URC);
     mvaddch(t + d,     l + w, LRC);
-#ifdef TERMINFO
-    attroff(A_ALTCHARSET);
-#endif
 }
 
 /******************************************************************/
@@ -341,7 +322,7 @@ ScoreIt()
 	for(i=0; i<HIGHCOUNT; i++)
 		High[i].Score = 0;
 	for(i=0; i<HIGHCOUNT; i++)
-		strncpy("         ",High[i].Name,NAMELEN);
+		strncpy(High[i].Name,"         ",NAMELEN);
 	}
 	umask(oldmask);
 
@@ -405,11 +386,6 @@ Boss()
 {	register int x,y;
 
 	clear();
-	refresh();
-	ioctl (0, TCSETA, &origtty);
-	system("sh </dev/tty >/dev/tty");
-	ioctl (1, TCSETAW, &tty);
-	clear();
 	DrawMenu();
 	/* restore board */
 	for (x=0; x<BOARD_WIDE; x++) 
@@ -422,12 +398,13 @@ Boss()
 /*********************************************************************/
 GetKey()
 {
-/*	fflush(stdout); */
+	int c;
+
 	Key = NULL_KEY;
 	top:
-	if (read (0, combuf, 1) == 0) 
+	if ((c = getch()) == ERR) 
 		return;
-	else Key = (*combuf&0177); 
+	else Key = (c & 0177); 
 	goto top;
 }
 
@@ -497,6 +474,6 @@ Leave()
 	mvaddstr(23,0,"");
 	refresh();
 	sleep(1);
-	ioctl (0, TCSETA, &origtty);
+	endwin();
 	exit(0);
 }
