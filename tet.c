@@ -103,6 +103,7 @@ Init()
 	initscr();
 #ifdef KEY_MIN
 	keypad(stdscr, TRUE);
+	curs_set(0);
 #endif /* KEY_MIN */
 	nodelay(stdscr, TRUE);
 	noecho();
@@ -264,6 +265,9 @@ Play()
 		case QUIT_KEY:
 		    CurrentPause = 0;
 		case FALL_KEY:
+#ifdef KEY_MIN
+		case KEY_DOWN:
+#endif /* KEY_MIN */
 		    FallingDown = 1;
 		    UPSCORE(20-Row);
 		    Pause = 0;
@@ -416,7 +420,7 @@ GetKey()
 	top:
 	if ((c = getch()) == ERR) 
 		return;
-	else Key = (c & 0177); 
+	else Key = c;
 	goto top;
 }
 
