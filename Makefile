@@ -29,9 +29,9 @@ install: tetrix
 	/bin/mv -f tetrix /usr/local/bin
 
 tetrix.tar: $(SOURCES)
-	tar -cvf $(SOURCES)
+	tar -cvf tetrix.tar $(SOURCES)
 tetrix.tar.gz: tetrix.tar
-	gzip tetrix.tar
+	rm -f tetrix.tar.gz; gzip tetrix.tar
 
 tetrix.shar: $(SOURCES)
 	shar $(SOURCES) >tetrix.shar
