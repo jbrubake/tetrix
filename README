@@ -42,10 +42,10 @@ to set the value of INIT_PAUSE.
 
 	Have fun!					Eric S. Raymond
 
-November 1994:  This code has been cleaned up for use with Linux ncurses.
-You don't have to specify -DCOLOR any more.  Given the growing ubiquity
-of curses, this game is now semi-obsolescent and I don't expect to have
-to hack it again.  Thus the envoi
+November 1994: This code has been cleaned up for use with Linux ncurses.  You
+don't have to specify -DCOLOR any more.  The -DEGA switch is now -DIBM.  Given
+the growing ubiquity of xtetris, this game is now semi-obsolescent and I don't
+expect to have to hack it again.  Thus the envoi
 
 	Good bye!					Eric S. Raymond
 

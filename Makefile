@@ -1,13 +1,17 @@
-#  - un'cpio' this in /usr/src or /usr/local/src or something - doesn't matter.
+# To install:
+#
+#  - unpack this in /usr/src or /usr/local/src or something - doesn't matter.
 #  - do a 'make install' in the tetrix directory
 #  - tetrix gets installed in /usr/local/bin
 #  - this will create a high score file in /usr/tmp, so doing it again
 #    later on will erase high scores for the machine.
 
-CFLAGS=-g -DEGA
-LFLAGS = # -s
+CFLAGS=-O -DIBM
+LFLAGS = -s
 OBJS= MoveR.o MoveL.o DrawP.o AdvanceP.o Rotate.o Colors.o tet.o
 INCS= tet.h
+
+SOURCES = READ.ME Makefile tet.h $(OBJS:.o=.c)
 
 tetrix: $(OBJS) $(INCS)
 	cc $(LFLAGS) $(OBJS) -ldcurses -o tetrix
@@ -24,8 +28,13 @@ install: tetrix
 	chmod 755 tetrix
 	/bin/mv -f tetrix /usr/local/bin
 
-shar:
-	shar README Makefile tet.h $(OBJS:.o=.c)
+tetrix.tar: $(SOURCES)
+	tar -cvf $(SOURCES)
+tetrix.tar.gz: tetrix.tar
+	gzip tetrix.tar
+
+tetrix.shar: $(SOURCES)
+	shar $(SOURCES) >tetrix.shar
 
 clean:
-	/bin/rm -rf tetrix core *.o
+	/bin/rm -rf tetrix core *.o tetrix.shar tetrix.tar tetrix.tar.gz
