@@ -14,8 +14,8 @@
 <refsynopsisdiv id='synopsis'>
 
 <cmdsynopsis>
-  <!--  blue  [ pause ]  -->
-  <command>blue</command>  <arg choice='opt'><replaceable>pause</replaceable></arg>
+  <!--  tetrix  [ pause ]  -->
+  <command>tetrix</command>  <arg choice='opt'><replaceable>pause</replaceable></arg>
 </cmdsynopsis>
 
 </refsynopsisdiv>
