@@ -17,7 +17,7 @@ static int InitPause;		/* Initial value of CurrentPause */
 static int CurrentPause;	/* Time between movements per level */
 static int FallingDown;		/* True when space bar is pressed */
 static int Beep;		/* Beep on invalid move? */
-static char Key;		/* holds last key polled */
+static int Key;			/* holds last key polled */
 
 int dispchars[6]
 # ifdef IBMASCIZ
@@ -101,6 +101,9 @@ Init()
 	Beep=0;
 	HighsChanged = 0;
 	initscr();
+#ifdef KEY_MIN
+	keypad(stdscr, TRUE);
+#endif /* KEY_MIN */
 	nodelay(stdscr, TRUE);
 	noecho();
 	cbreak();
@@ -268,6 +271,9 @@ Play()
 
 		case RIGHT_KEY:
 		case L_RIGHT_KEY:
+#ifdef KEY_MIN
+		case KEY_RIGHT:
+#endif /* KEY_MIN */
 		    if (MoveRight(Type, MINX + Column, MINY + Row))
 			Column += 1;
 		    else if (Beep)
@@ -276,6 +282,9 @@ Play()
 
 		case LEFT_KEY:
 		case L_LEFT_KEY:
+#ifdef KEY_MIN
+		case KEY_LEFT:
+#endif /* KEY_MIN */
 		    if (MoveLeft(Type, MINX + Column, MINY + Row))
 			Column -= 1;
 		    else if (Beep)
@@ -284,6 +293,9 @@ Play()
 
 		case ROTATE_KEY:
 		case L_ROTATE_KEY:
+#ifdef KEY_MIN
+		case KEY_UP:
+#endif /* KEY_MIN */
 		    ntype = Rotate(Type, MINX + Column, MINY + Row);
 		    if (Beep && ntype == Type)
 			beep();
@@ -470,10 +482,12 @@ TestRows()
 Leave()
 {
 	erase();
+#ifdef CHATTY
 	mvaddstr(22,48,"Tetrix says Bye\n");
 	mvaddstr(23,0,"");
 	refresh();
 	sleep(1);
+#endif /* CHATTY */
 	endwin();
 	exit(0);
 }

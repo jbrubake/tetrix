@@ -7,7 +7,7 @@
 #    later on will erase high scores for the machine.
 
 # Don't forget to change the spec file when you bump the version number.
-VERSION=2.1
+VERS=2.1
 
 CFLAGS=-O -DIBM
 LFLAGS = -s
