@@ -21,8 +21,9 @@
 
 <refsect1 id='description'><title>DESCRIPTION</title>
 <para>A clone of the Tetris game. Documentation for the commands is
-on-screen.  The optional argument is an initial delay time between moves; on
-2002-era personal computers it needs to be set to about 100,000.
+on-screen.  The optional argument is an initial delay loop count
+between moves; on 2003-era personal computers it needs to be set to
+about 75,000.
 </para>
 
 </refsect1>
@@ -35,9 +36,9 @@ Scores file.</para>
 <refsect1 id='authors'><title>AUTHORS</title>
 <para>Originally written by Quentin Neill. Visual user interface and
 color support by Eric S. Raymond
-<email>esr@thyrsus.com</email>. The ncurses version was written
-in November 1994. See <emphasis
-remap='I'>http://www.catb.org/~esr/tetrix/</emphasis>.</para>
+<email>esr@thyrsus.com</email>. The ncurses version was written in
+November 1994. See <ulink
+url='http://www.catb.org/~esr/tetrix/'>http://www.catb.org/~esr/tetrix/</ulink>.</para>
 </refsect1>
 </refentry>
 
