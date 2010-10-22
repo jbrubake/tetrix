@@ -66,13 +66,13 @@ void PUTCH(int x,int y,int z)
     switch(z)
     {
     case NO_CHAR: attron(attribs[WHITE]); break;
-    case 'G': attron(attribs[GREEN]); break;
-    case 'R': attron(attribs[RED]); break;
-    case 'O': attron(attribs[TAN]); break;
-    case 'W': attron(attribs[WHITE]); break;
-    case 'V': attron(attribs[VIOLET]); break;
-    case 'B': attron(attribs[BLUE]); break;
-    case 'Y': attron(attribs[YELLOW]); break;
+    case 'G': attron(attribs[GREEN]|A_REVERSE); break;
+    case 'R': attron(attribs[RED]|A_REVERSE); break;
+    case 'O': attron(attribs[TAN]|A_REVERSE); break;
+    case 'W': attron(attribs[WHITE]|A_REVERSE); break;
+    case 'V': attron(attribs[VIOLET]|A_REVERSE); break;
+    case 'B': attron(attribs[BLUE]|A_REVERSE); break;
+    case 'Y': attron(attribs[YELLOW]|A_REVERSE); break;
     }
     mvaddch(y, x, z);
     if (INBOARD(x, y))
