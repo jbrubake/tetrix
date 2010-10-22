@@ -3,7 +3,7 @@ Version: 2.3
 Release: 1
 URL: http://www.catb.org/~esr/tetrix/
 Source0: %{name}-%{version}.tar.gz
-License: GPL
+License: BSD
 Group: Games
 Summary: Tetrix (screen mode)
 BuildRoot: %{_tmppath}/%{name}-root
