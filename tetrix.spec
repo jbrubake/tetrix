@@ -1,5 +1,5 @@
 Name: tetrix
-Version: 2.2
+Version: 2.3
 Release: 1
 URL: http://www.catb.org/~esr/tetrix/
 Source0: %{name}-%{version}.tar.gz
@@ -35,6 +35,10 @@ cp tetrix.6 "$RPM_BUILD_ROOT"%{_mandir}/man6/
 %{_bindir}/tetrix
 
 %changelog
+* Fri Oct 22 2010 Eric S. Raymond <esr@snark.thyrsus.com> 2.3-1
+- Polish code for modern C.
+- Choose a reasonable default for the intermove pause.
+
 * Mon Dec 29 2003 Eric S. Raymond <esr@snark.thyrsus.com> 2.2-1
 - RPMS can now be built by non-root users.
 
