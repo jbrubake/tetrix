@@ -9,6 +9,20 @@
 #include <string.h>
 #include "tet.h"
 
+/*
+ * Good on a 2GHz Intel Core2 Duo in 2010.
+ * Adjust upwards as technology advances.
+ * As a matter of historical interest here
+ * are the historical values for "reasonable:
+ * 2010 = 200000
+ * 2003 = 75000
+ * 1994 = 150
+ */
+#define DEFAULT_INITPAUSE	200000
+
+#define PAUSE_DECREMENT		(DEFAULT_INITPAUSE / 150)
+
+
 #define HIGHCOUNT	10	/* count of high scorers to show */
 #define SCORELEN	10	/* max length of score string */
 #define NAMELEN		10	/* max length of user name string */
@@ -435,7 +449,7 @@ TestRows(void)
 		if (IS_FREE(MINX+x,MINY+y)) { fullrow = 0; break; }
 	    if (fullrow) {
 		marked[y]++;
-		CurrentPause--;	/* speed up the game */
+		CurrentPause -= PAUSE_DECREMENT;	/* speed up the game */
 	    }
 	    else    {
 		for (x=0; x<BOARD_WIDE; x++)
@@ -487,7 +501,7 @@ char **argv;
     if (argc >= 2)
 	InitPause = atoi(argv[1]);
     else
-	InitPause = 150;
+	InitPause = DEFAULT_INITPAUSE;
     Init();
     for ( ; ; ) {
 	NewGame();

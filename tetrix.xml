@@ -25,8 +25,7 @@
 <refsect1 id='description'><title>DESCRIPTION</title>
 <para>A clone of the Tetris game. Documentation for the commands is
 on-screen.  The optional argument is an initial delay loop count
-between moves; on 2003-era personal computers it needs to be set to
-about 75,000.
+between moves; the game tries to default to a reasonable value.
 </para>
 
 </refsect1>
