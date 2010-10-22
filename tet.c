@@ -35,12 +35,7 @@ static int FallingDown;		/* True when space bar is pressed */
 static int Beep;		/* Beep on invalid move? */
 static int Key;			/* holds last key polled */
 
-int dispchars[6]
-# ifdef IBMASCIZ
-	= {0263,0304,0332,0277,0300,0331};
-#else
-	= {'|', '-', '.', '.', '`', '\''};
-# endif /* IBMASCIZ */
+int dispchars[6] = {'|', '-', '.', '.', '`', '\''};
 # define VERT	dispchars[0]	/* vertical wall	*/
 # define HORIZ	dispchars[1]	/* horizontal wall	*/
 # define ULC	dispchars[2]	/* upper left corner	*/
