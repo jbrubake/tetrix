@@ -494,9 +494,7 @@ Leave(void)
 }
 
 /**************************************************MAIN*****/
-main(argc, argv)
-int argc;
-char **argv;
+main(int argc, char *argv[])
 {
     if (argc >= 2)
 	InitPause = atoi(argv[1]);
