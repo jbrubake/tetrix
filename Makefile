@@ -27,6 +27,9 @@ tet.o: tet.c tet.h
 tetrix.6: tetrix.xml
 	xmlto man tetrix.xml
 
+tetrix.html: tetrix.xml
+	xmlto html-nochunks tetrix.xml
+
 install: tetrix.6 uninstall
 	cp tetrix /usr/bin
 	cp tetrix.6 /usr/share/man/man6/tetrix.6
@@ -36,13 +39,17 @@ uninstall:
 
 clean:
 	rm -f tetrix tetrix.6 tetrix-*.rpm tetrix-*.tar.gz *~
+	rm -f tetrix.html MANIFEST SHIPPER.*
 
 SOURCES = README COPYING tetrix.xml Makefile tet.h $(OBJS:.o=.c) tetrix.spec
 
 tetrix-$(VERS).tar.gz: $(SOURCES) tetrix.6
 	@ls $(SOURCES) tetrix.6 | sed s:^:tetrix-$(VERS)/: >MANIFEST
 	@(cd ..; ln -s tetrix tetrix-$(VERS))
-	(cd ..; tar -czvf tetrix/tetrix-$(VERS).tar.gz `cat tetrix/MANIFEST`)
+	(cd ..; tar -czf tetrix/tetrix-$(VERS).tar.gz `cat tetrix/MANIFEST`)
 	@(cd ..; rm tetrix-$(VERS))
 
 dist: tetrix-$(VERS).tar.gz
+
+release: tetrix-$(VERS).tar.gz tetrix.html
+	shipper -u -m -t; make clean
