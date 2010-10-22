@@ -38,7 +38,7 @@ uninstall:
 	rm -f /usr/bin/install /usr/share/man/man6/tetrix.6
 
 clean:
-	rm -f tetrix tetrix.6 tetrix-*.rpm tetrix-*.tar.gz *~
+	rm -f tetrix *.o tetrix tetrix.6 tetrix-*.rpm tetrix-*.tar.gz *~
 	rm -f tetrix.html MANIFEST SHIPPER.*
 
 SOURCES = README COPYING tetrix.xml Makefile tet.h $(OBJS:.o=.c) tetrix.spec
