@@ -1,4 +1,4 @@
-
+#include <stdlib.h>
 #include <curses.h>
 #include "tet.h"
 /*********************************************************************/
@@ -7,7 +7,7 @@
 /*********************************************************************/
 
 /* returns a random number in the set 4 8 16 20 24 or 28 */
-RandomPiece()
+RandomPiece(void)
 {
     return ((int)(mrand48() % 4) + 4) * 4;
 }
@@ -47,13 +47,12 @@ int	type, col, row;
 
     default:
 	printf("illegal piece type=%d!!\n",type);
-	exit();
+	exit(0);
 	/*NOTREACHED*/
     }
 }
 
-DrawPiece(type, col, row)
-int	type, col, row;
+DrawPiece(int type, int col, int row)
 {
     switch (type)
     {
@@ -108,7 +107,7 @@ int	type, col, row;
 
     default:
 	printf("illegal piece type=%d!!\n",type);
-	exit();
+	exit(0);
     }
     refresh();
 }

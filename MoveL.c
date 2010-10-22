@@ -1,12 +1,11 @@
-
+#include <stdlib.h>
 #include <curses.h>
 #include "tet.h"
 /*********************************************************************/
 /* Switch on type of piece, find out if I can move left */
 /* If so, then do it */
 /*********************************************************************/
-MoveLeft(type, col, row)
-int	type, col, row;
+MoveLeft(int type, int col, int row)
 {
     switch (type) {
 	/*  WHITE PIECES  */
@@ -270,7 +269,7 @@ int	type, col, row;
 
     default: 
 	printf("illegal piece type=%d!!\n",type); 
-	exit();
+	exit(0);
     }
 }
 

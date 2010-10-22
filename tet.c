@@ -1,10 +1,12 @@
 /* Tetrix by quentin */
 
+#include <stdlib.h>
 #include <signal.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <curses.h>
+#include <string.h>
 #include "tet.h"
 
 #define HIGHCOUNT	10	/* count of high scorers to show */
@@ -51,7 +53,7 @@ char Temp[BOARD_WIDE][BOARD_HIGH];	/* temp storage for TestRows */
 				refresh(); }
 */
 #define UPSCORE(x)    { ThisScore += x; \
-			sprintf((char *)ScoreString,"%-06d",ThisScore); \
+			sprintf((char *)ScoreString,"%06d",ThisScore); \
 			mvaddstr(1,46,ScoreString); }
 
 #define NULL_KEY	'\0'
@@ -69,25 +71,8 @@ char Temp[BOARD_WIDE][BOARD_HIGH];	/* temp storage for TestRows */
 #define SCORE_KEY	'h'
 #define MENU_KEY	'm'
 
-/**************************************************MAIN*****/
-main(argc, argv)
-int argc;
-char **argv;
-{
-	if (argc >= 2)
-		InitPause = atoi(argv[1]);
-	else
-		InitPause = 150;
-	Init();
-	for ( ; ; ) {
-		NewGame();
-		Play();
-		DrawScore(ScoreIt());
-		}
-}
-
 /*************************************************************/
-Init()
+Init(void)
 {
 	register char *ttnam, *p;
 	register int x,y,i,fd;
@@ -133,7 +118,7 @@ Init()
 }
 
 /**************************************************************/
-NewGame()
+NewGame(void)
 {
 	register int x,y;
 
@@ -163,8 +148,7 @@ NewGame()
 }
 
 /******************************************************************/
-DrawBox(t, l, d, w)
-int	t, l, d, w;
+DrawBox(int t, int l, int d, int w)
 {
     register int x, y;
 
@@ -185,7 +169,7 @@ int	t, l, d, w;
 }
 
 /******************************************************************/
-DrawMenu()
+DrawMenu(void)
 {
 	register int y;
 	erase(); 
@@ -224,7 +208,7 @@ DrawMenu()
 }
 
 /**************************************************************/
-Play()
+Play(void)
 {
     int Type;	/* Type specifies rotation, shape and color of blocks */
     int Row;	/* Row of pivot point of block */
@@ -325,7 +309,7 @@ Play()
 }
 
 /*********************************************************************/
-ScoreIt()
+ScoreIt(void)
 {
 	register int  oldmask,fd,i,j;
 
@@ -371,8 +355,7 @@ ScoreIt()
 }
 
 /***********************************************************************/
-DrawScore(highindex)
-int	highindex;
+DrawScore(int highindex)
 {
 	register int j;
 
@@ -398,7 +381,7 @@ int	highindex;
 }
 
 /*********************************************************************/
-Boss()
+Boss(void)
 {	register int x,y;
 
 	clear();
@@ -412,7 +395,7 @@ Boss()
 }
 
 /*********************************************************************/
-GetKey()
+GetKey(void)
 {
 	int c;
 
@@ -433,7 +416,7 @@ int x,y;
 }
 
 /*********************************************************************/
-TestRows()
+TestRows(void)
 {	register int x,y,tempy,fullrow;
 	int marked[BOARD_HIGH];
 
@@ -483,7 +466,7 @@ TestRows()
     }
 
 /***********************************************************/
-Leave()
+Leave(void)
 {
 	erase();
 #ifdef CHATTY
@@ -494,4 +477,21 @@ Leave()
 #endif /* CHATTY */
 	endwin();
 	exit(0);
+}
+
+/**************************************************MAIN*****/
+main(argc, argv)
+int argc;
+char **argv;
+{
+    if (argc >= 2)
+	InitPause = atoi(argv[1]);
+    else
+	InitPause = 150;
+    Init();
+    for ( ; ; ) {
+	NewGame();
+	Play();
+	DrawScore(ScoreIt());
+    }
 }

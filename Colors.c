@@ -24,7 +24,7 @@ typedef struct
 }
 colorpair;
 
-void init_colors()
+void init_colors(void)
 {
     start_color();
 
@@ -61,8 +61,7 @@ void init_colors()
 #endif /* EGA */
 }
 
-void PUTCH(x,y,z)
-int	x, y, z;
+void PUTCH(int x,int y,int z)
 { 
     switch(z)
     {
