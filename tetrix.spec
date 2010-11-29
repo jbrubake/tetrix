@@ -7,6 +7,7 @@ License: BSD
 Group: Games
 Summary: Tetrix (screen mode)
 BuildRoot: %{_tmppath}/%{name}-root
+#Destinations: freshmeat
 
 %description
 A UNIX-hosted, curses-based clone of Tetris.  Probably obsolete
