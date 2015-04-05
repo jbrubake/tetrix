@@ -43,6 +43,10 @@ clean:
 	rm -f tetrix *.o tetrix tetrix.6 tetrix-*.rpm tetrix-*.tar.gz *~
 	rm -f tetrix.html MANIFEST
 
+CPPCHECKOPTS =
+cppcheck:
+	cppcheck $(CPPCHECKOPTS) tet.h $(OBJS:.o=.c)
+
 SOURCES = README COPYING NEWS control tetrix.xml Makefile tet.h $(OBJS:.o=.c)
 
 tetrix-$(VERS).tar.gz: $(SOURCES) tetrix.6
