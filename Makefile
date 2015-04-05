@@ -6,7 +6,7 @@
 #  - this will create a high score file in /usr/tmp, so doing it again
 #    later on will erase high scores for the machine.
 
-VERS=2.3
+VERS=2.4
 
 # Withoiut the last option, modern GCC throws a 'stack smashing detected'
 # error on startup that seems to be spurious

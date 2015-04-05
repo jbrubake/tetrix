@@ -1,13 +1,14 @@
 			tetrix project news
 
-Repository head:
+2.4: 2015-04-05
   License changed to BSD.
+  Code passes cppcheck.
 
-2.3: 2010-Oct-22
+2.3: 2010-10-22
   Polish code for modern C.
   Choose a reasonable default for the intermove pause.
 
-2.2: 2003-Dec-29
+2.2: 2003-12-29
   RPMS can now be built by non-root users.
 
 2.1: 2002-08-01
