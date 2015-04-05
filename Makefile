@@ -6,8 +6,10 @@
 #  - this will create a high score file in /usr/tmp, so doing it again
 #    later on will erase high scores for the machine.
 
-VERS=$(shell sed <tetrix.spec -n -e '/Version: \(.*\)/s//\1/p')
+VERS=2.3
 
+# Withoiut the last option, modern GCC throws a 'stack smashing detected'
+# error on startup that seems to be spurious
 CFLAGS=-O -DIBM -fno-stack-protector
 LFLAGS = -s
 OBJS= MoveR.o MoveL.o DrawP.o AdvanceP.o Rotate.o Colors.o tet.o
@@ -41,7 +43,7 @@ clean:
 	rm -f tetrix *.o tetrix tetrix.6 tetrix-*.rpm tetrix-*.tar.gz *~
 	rm -f tetrix.html MANIFEST
 
-SOURCES = README COPYING tetrix.xml Makefile tet.h $(OBJS:.o=.c) tetrix.spec
+SOURCES = README COPYING NEWS control tetrix.xml Makefile tet.h $(OBJS:.o=.c)
 
 tetrix-$(VERS).tar.gz: $(SOURCES) tetrix.6
 	@ls $(SOURCES) tetrix.6 | sed s:^:tetrix-$(VERS)/: >MANIFEST

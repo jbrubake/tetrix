@@ -1,0 +1,23 @@
+# This is not a real Debian control file, though the syntax is compatible.
+# It's project metadata for the shipper tool
+
+Package: tetrix
+
+Description: A UNIX-hosted, curses-based clone of Tetris.
+ Probably obsolete unless you can't use X for some reason, but of some
+ historical interest.
+
+#XBS-Destinations: freecode
+
+Homepage: http://www.catb.org/~esr/tetrix
+
+XBS-HTML-Target: index.html
+
+XBS-Repository-URL: http://thyrsus.com/gitweb/?p=tetrix.git
+
+XBS-Developer-Clone: git@thyrsus.com:tetrix
+
+XBS-Anonymous-Clone: git://thyrsus.com/repositories/tetrix.git
+
+XBS-VC-Tag-Template: %(version)s
+
