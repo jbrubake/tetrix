@@ -8,7 +8,7 @@
 
 VERS=$(shell sed <tetrix.spec -n -e '/Version: \(.*\)/s//\1/p')
 
-CFLAGS=-O -DIBM
+CFLAGS=-O -DIBM -fno-stack-protector
 LFLAGS = -s
 OBJS= MoveR.o MoveL.o DrawP.o AdvanceP.o Rotate.o Colors.o tet.o
 INCS= tet.h
