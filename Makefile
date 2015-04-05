@@ -39,7 +39,7 @@ uninstall:
 
 clean:
 	rm -f tetrix *.o tetrix tetrix.6 tetrix-*.rpm tetrix-*.tar.gz *~
-	rm -f tetrix.html MANIFEST SHIPPER.*
+	rm -f tetrix.html MANIFEST
 
 SOURCES = README COPYING tetrix.xml Makefile tet.h $(OBJS:.o=.c) tetrix.spec
 
@@ -52,4 +52,7 @@ tetrix-$(VERS).tar.gz: $(SOURCES) tetrix.6
 dist: tetrix-$(VERS).tar.gz
 
 release: tetrix-$(VERS).tar.gz tetrix.html
-	shipper -u -m -t; make clean
+	shipper version=$(VERS) | sh -e -x
+
+refresh: tetrix.html
+	shipper -N -w version=$(VERS) | sh -e -x
