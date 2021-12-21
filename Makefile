@@ -3,7 +3,7 @@
 #  - unpack this in /usr/src or /usr/local/src or something - doesn't matter.
 #  - do a 'make install' in the tetrix directory
 #  - tetrix gets installed in /usr/local/bin
-#  - this will create a high score file in /usr/tmp, so doing it again
+#  - this will create a high score file in /var/games, so doing it again
 #    later on will erase high scores for the machine.
 
 VERS=2.4
@@ -33,11 +33,12 @@ tetrix.html: tetrix.xml
 	xmlto html-nochunks tetrix.xml
 
 install: tetrix.6 uninstall
-	cp tetrix /usr/bin
-	cp tetrix.6 /usr/share/man/man6/tetrix.6
+	cp tetrix /usr/local/games
+	cp tetrix.6 /usr/local/share/man/man6/tetrix.6
 
 uninstall:
-	rm -f /usr/bin/install /usr/share/man/man6/tetrix.6
+	rm -f /usr/local/games/tetrix
+	rm -f /usr/local/share/man/man6/tetrix.6
 
 clean:
 	rm -f tetrix *.o tetrix tetrix.6 tetrix-*.rpm tetrix-*.tar.gz *~

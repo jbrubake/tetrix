@@ -43,7 +43,7 @@ int dispchars[6] = {'|', '-', '.', '.', '`', '\''};
 # define LLC	dispchars[4]	/* lower left corner	*/
 # define LRC	dispchars[5]	/* lower right corner	*/
 
-#define SCORE_FILE	"/usr/tmp/.TetScores"
+#define SCORE_FILE	"/var/games/tetrix.scores"
 char ScoreString[SCORELEN];
 struct ScoreStruct {
 	char Name[NAMELEN];

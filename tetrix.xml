@@ -31,7 +31,7 @@ between moves; the game tries to default to a reasonable value.
 </refsect1>
 
 <refsect1 id='files'><title>FILES</title>
-<para><filename>/usr/tmp/.TetScores</filename>
+<para><filename>/var/games/tetrix.scores</filename>
 Scores file.</para>
 </refsect1>
 
